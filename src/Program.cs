@@ -17,13 +17,13 @@ namespace Generator
 
             var runnerWorkDir = Environment.GetEnvironmentVariable("RUNNER_WORKSPACE") ?? "/";
             var targetDirectory = Environment.GetEnvironmentVariable("app_artifact_location") ?? "dist";
-            var completeTarget = Path.Combine(runnerWorkDir, targetDirectory);
+            var completeTarget = Path.Combine("/", targetDirectory);
 
-            Console.WriteLine($"Writing to {completeTarget}");
+            Console.WriteLine($"Writing to {targetDirectory}");
 
-            if (!Directory.Exists(completeTarget))
+            if (!Directory.Exists(targetDirectory))
             {
-                Directory.CreateDirectory(completeTarget);
+                Directory.CreateDirectory(targetDirectory);
             }
 
 
