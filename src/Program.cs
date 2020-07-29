@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.IO;
 
 namespace Generator
 {
@@ -14,6 +15,14 @@ namespace Generator
                 Console.WriteLine($"{envVar.Key} {envVar.Value}");
             }
 
+            var targetDirectory = Environment.GetEnvironmentVariable("app_artifact_location") ?? "dist";
+            var completeTarget = Path.Combine(Environment.CurrentDirectory, "..", targetDirectory);
+
+            Console.WriteLine($"Writing to {completeTarget}");
+
+            var indexPath = Path.Combine(completeTarget, "index.html");
+
+            File.WriteAllText(indexPath, "Hello World");
         }
     }
 }
