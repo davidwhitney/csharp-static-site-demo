@@ -15,19 +15,19 @@ namespace Generator
                 Console.WriteLine($"{envVar.Key} {envVar.Value}");
             }
 
-            var runnerWorkDir = Environment.GetEnvironmentVariable("RUNNER_WORKSPACE") ?? "/";
-            var targetDirectory = Environment.GetEnvironmentVariable("INPUT_APP_ARTIFACT_LOCATION") ?? "dist";
-            var completeTarget = Path.Combine(runnerWorkDir, targetDirectory);
-
-            Console.WriteLine($"Writing to {completeTarget}");
-
-            if (!Directory.Exists(completeTarget))
+            var baseDirectory = Environment.GetEnvironmentVariable("HOME") ?? "";
+            var targetDirectory = Environment.GetEnvironmentVariable("INPUT_APP_ARTIFACT_LOCATION") ?? "";
+            var outputLocation = Path.Combine(baseDirectory, targetDirectory);
+            
+            if (!Directory.Exists(outputLocation))
             {
-                Directory.CreateDirectory(completeTarget);
+                Console.WriteLine($"Creating output location: {outputLocation}");
+                Directory.CreateDirectory(outputLocation);
             }
 
+            Console.WriteLine($"Writing to: {outputLocation}");
 
-            var indexPath = Path.Combine(completeTarget, "index.html");
+            var indexPath = Path.Combine(outputLocation, "index.html");
 
             File.WriteAllText(indexPath, "Hello World");
         }
