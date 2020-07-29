@@ -15,15 +15,17 @@ namespace Generator
                 Console.WriteLine($"{envVar.Key} {envVar.Value}");
             }
 
+            var runnerWorkDir = Environment.GetEnvironmentVariable("RUNNER_WORKSPACE") ?? "/";
             var targetDirectory = Environment.GetEnvironmentVariable("app_artifact_location") ?? "dist";
-            var completeTarget = Path.Combine(Environment.CurrentDirectory, "..", targetDirectory);
+            var completeTarget = Path.Combine(runnerWorkDir, targetDirectory);
+
+            Console.WriteLine($"Writing to {completeTarget}");
 
             if (!Directory.Exists(completeTarget))
             {
                 Directory.CreateDirectory(completeTarget);
             }
 
-            Console.WriteLine($"Writing to {completeTarget}");
 
             var indexPath = Path.Combine(completeTarget, "index.html");
 
