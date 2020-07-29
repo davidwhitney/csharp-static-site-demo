@@ -19,7 +19,7 @@ namespace Generator
             var targetDirectory = Environment.GetEnvironmentVariable("INPUT_APP_ARTIFACT_LOCATION") ?? "dist";
             var completeTarget = Path.Combine(runnerWorkDir, targetDirectory);
 
-            Console.WriteLine($"Writing to {targetDirectory}");
+            Console.WriteLine($"Writing to {completeTarget}");
 
             if (!Directory.Exists(completeTarget))
             {
