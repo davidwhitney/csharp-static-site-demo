@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <Target Name="TestTarget" AfterTargets="Build">
-    <Exec Command="dotnet bin\Debug\netcoreapp3.1\Generator.dll" />
+    <Exec Command="dotnet run bin/Debug/netcoreapp3.1/Generator.dll" />
   </Target>
 
 </Project>
