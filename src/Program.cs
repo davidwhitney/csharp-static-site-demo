@@ -15,7 +15,7 @@ namespace Generator
                 Console.WriteLine($"{envVar.Key} {envVar.Value}");
             }
 
-            var baseDirectory = Environment.GetEnvironmentVariable("HOME") ?? "";
+            var baseDirectory = Environment.GetEnvironmentVariable("SOURCE_DIR") ?? "";
             var targetDirectory = Environment.GetEnvironmentVariable("INPUT_APP_ARTIFACT_LOCATION") ?? "";
             var outputLocation = Path.Combine(baseDirectory, targetDirectory);
             
