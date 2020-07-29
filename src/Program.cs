@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 
 namespace Generator
 {
@@ -6,7 +7,13 @@ namespace Generator
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Let's generate a static site!");
+
+            foreach (DictionaryEntry envVar in Environment.GetEnvironmentVariables())
+            {
+                Console.WriteLine($"{envVar.Key} {envVar.Value}");
+            }
+
         }
     }
 }
