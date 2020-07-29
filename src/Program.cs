@@ -21,9 +21,9 @@ namespace Generator
 
             Console.WriteLine($"Writing to {targetDirectory}");
 
-            if (!Directory.Exists(targetDirectory))
+            if (!Directory.Exists(completeTarget))
             {
-                Directory.CreateDirectory(targetDirectory);
+                Directory.CreateDirectory(completeTarget);
             }
 
 
