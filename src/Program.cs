@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.IO;
 
 namespace Generator
@@ -8,17 +7,18 @@ namespace Generator
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Let's generate a static site!");
-
-            foreach (DictionaryEntry envVar in Environment.GetEnvironmentVariables())
+            var isCi =  bool.Parse((Environment.GetEnvironmentVariable("CI") ?? "false"));
+            if (!isCi) 
             {
-                Console.WriteLine($"{envVar.Key} {envVar.Value}");
+                Console.WriteLine("Skipping generation, not running in CI.");
+                return;
             }
+
+            Console.WriteLine("Let's generate a static site!");
 
             var baseDirectory = Environment.GetEnvironmentVariable("DESTINATION_DIR") ?? "";
             var targetDirectory = Environment.GetEnvironmentVariable("INPUT_APP_ARTIFACT_LOCATION") ?? "";
-            var outputLocation = Path.Combine(baseDirectory, targetDirectory);
-            
+            var outputLocation = Path.Combine(baseDirectory, targetDirectory);            
             if (!Directory.Exists(outputLocation))
             {
                 Console.WriteLine($"Creating output location: {outputLocation}");
